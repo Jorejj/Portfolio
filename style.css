@@ -1,0 +1,292 @@
+/* 1. UI/UX & Visual Direction */
+:root {
+    --bg-dark: #0a0a0a;
+    --accent-blue: #0070f3;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Canvas Background */
+#heroCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Section Formatting */
+section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-blue);
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+/* Hero Section */
+#hero h1 {
+    font-size: clamp(3rem, 5vw, 5rem);
+    background: linear-gradient(to right, #fff, var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+.typed-container {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    height: 60px;
+}
+
+.cursor {
+    animation: blink 1s infinite;
+    color: var(--accent-blue);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Buttons & Interactivity */
+.magnetic-btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.1s ease, background-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background-color: var(--accent-blue);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 112, 243, 0.4);
+}
+
+.outline-btn {
+    background-color: transparent;
+    border: 1px solid var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.small-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    background-color: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--accent-blue);
+    margin-top: 1rem;
+}
+
+.primary-btn:hover, .outline-btn:hover, .small-btn:hover {
+    box-shadow: 0 6px 20px rgba(0, 112, 243, 0.6);
+}
+
+/* Glassmorphism Cards */
+/* Update your Glassmorphism Cards with a dynamic glow */
+.glass-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(0, 112, 243, 0.5);
+    /* The Glow Effect */
+    box-shadow: 0 10px 40px rgba(0, 112, 243, 0.2), 
+                0 0 20px rgba(0, 112, 243, 0.1);
+    background: radial-gradient(circle at center, rgba(0, 112, 243, 0.08) 0%, var(--glass-bg) 70%);
+}
+
+/* Specific styling for technical logos */
+.tech-icon-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    color: var(--accent-blue);
+}
+
+.tech-icon-row i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.tech-icon-row i:hover {
+    transform: scale(1.2);
+    color: #fff;
+    filter: drop-shadow(0 0 8px var(--accent-blue));
+}
+
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card h3 {
+    color: var(--accent-blue);
+    margin-bottom: 0.5rem;
+}
+
+/* Bento Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 250px;
+    gap: 1.5rem;
+}
+
+.bento-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+/* New helper for the content inside the wide card */
+.bento-content {
+    flex: 2;
+}
+
+.bento-stats {
+    flex: 1;
+    text-align: right;
+    border-left: 1px solid var(--glass-border);
+    padding-left: 1.5rem;
+}
+
+/* Adjust mobile view so it stacks properly */
+@media (max-width: 768px) {
+    .bento-large {
+        grid-column: span 1;
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+    }
+    .bento-stats {
+        border-left: none;
+        padding-left: 0;
+        text-align: left;
+    }
+}
+/* Reveal Animation Setup */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .bento-large {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Add these to your existing style.css */
+
+/* Skill Icon Styling */
+.skill-icon {
+    font-size: 2.2rem;
+    color: var(--accent-blue);
+    margin-bottom: 1.2rem;
+    display: block;
+}
+
+.skill-card h3 {
+    margin-top: 0.5rem;
+}
+
+/* Footer & Social Icons */
+footer {
+    padding: 6rem 0 3rem;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-icon {
+    font-size: 2rem;
+    color: var(--text-primary);
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    color: var(--accent-blue);
+    transform: translateY(-3px);
+}
+
+/* Ensure uniform bento items */
+.bento-item {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+}
